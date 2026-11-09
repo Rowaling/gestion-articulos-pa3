@@ -1,0 +1,31 @@
+h2, h3 { color: #0a4a40; }
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 16px 0 24px;
+}
+
+.tarjeta {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.numero { font-size: 1.8rem; font-weight: 700; color: #0f6b5c; }
+.etiqueta { color: #5b6f69; margin-top: 4px; }
+
+.recientes { background: #ffffff; border-radius: 10px; padding: 16px 16px 16px 36px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); }
+.recientes li { margin-bottom: 8px; }
+
+.accesos { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+.btn { border-radius: 6px; padding: 10px 20px; text-decoration: none; color: #ffffff; }
+.btn-principal { background: #0f6b5c; }
+.btn-secundario { background: #2f6fb3; }
+
+.alerta { background: #fbe4e1; color: #8e2a20; padding: 10px 14px; border-radius: 6px; }

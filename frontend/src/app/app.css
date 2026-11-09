@@ -1,0 +1,84 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f6b5c;
+  padding: 0 24px;
+  height: 60px;
+}
+
+.marca {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.menu {
+  display: flex;
+  gap: 8px;
+}
+
+.menu a {
+  color: #d7efe8;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.menu a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.menu a.activo {
+  background: #ffffff;
+  color: #0f6b5c;
+  font-weight: 600;
+}
+
+main {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 12px;
+    gap: 8px;
+  }
+}
+.menu {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.usuario {
+  color: #ffffff;
+  margin: 0 6px;
+}
+
+.rol {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #d7efe8;
+  color: #0a4a40;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.salir {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  background: #4f8f82;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.salir:hover {
+  opacity: 0.88;
+}

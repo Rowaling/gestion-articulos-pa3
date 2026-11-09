@@ -1,0 +1,54 @@
+<div class="encabezado">
+  <h2>Lista de artículos</h2>
+  <a routerLink="/articulos/nuevo" class="btn btn-principal">+ Nuevo artículo</a>
+</div>
+
+@if (mensaje()) {
+  <p class="alerta alerta-ok">✅ {{ mensaje() }}</p>
+}
+
+@if (error()) {
+  <p class="alerta alerta-error">❌ {{ error() }}</p>
+}
+
+@if (!auth.esAdmin()) {
+  <p class="alerta alerta-aviso">Tu rol es <strong>usuario</strong>: puedes consultar y registrar artículos. Editar y eliminar es solo para administradores.</p>
+}
+
+@if (cargando()) {
+  <p>Cargando artículos...</p>
+} @else if (articulos().length === 0 && !error()) {
+  <p>No hay artículos registrados todavía.</p>
+} @else if (articulos().length > 0) {
+  <div class="tabla-contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Descripción</th>
+          @if (auth.esAdmin()) {
+            <th>Acciones</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (articulo of articulos(); track articulo._id) {
+          <tr>
+            <td>{{ articulo.nombre }}</td>
+            <td>{{ articulo.categoria }}</td>
+            <td>S/ {{ articulo.precio | number: '1.2-2' }}</td>
+            <td>{{ articulo.descripcion }}</td>
+            @if (auth.esAdmin()) {
+              <td class="acciones">
+                <a [routerLink]="['/articulos/editar', articulo._id]" class="btn btn-editar">Editar</a>
+                <button class="btn btn-eliminar" (click)="eliminar(articulo)">Eliminar</button>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

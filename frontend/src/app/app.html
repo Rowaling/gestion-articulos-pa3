@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <span class="marca">📦 Gestión de Artículos</span>
+  <div class="menu">
+    @if (auth.estaLogueado()) {
+      <a routerLink="/dashboard" routerLinkActive="activo">Dashboard</a>
+      <a routerLink="/articulos" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Artículos</a>
+      <a routerLink="/articulos/nuevo" routerLinkActive="activo">Nuevo artículo</a>
+      <span class="usuario">{{ auth.usuario()?.nombre }} <small class="rol">{{ auth.usuario()?.rol }}</small></span>
+      <button class="salir" (click)="salir()">Cerrar sesión</button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="activo">Iniciar sesión</a>
+      <a routerLink="/registro" routerLinkActive="activo">Registrarse</a>
+    }
+  </div>
+</nav>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

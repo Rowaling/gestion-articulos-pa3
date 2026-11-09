@@ -1,0 +1,71 @@
+<form [formGroup]="form" (ngSubmit)="enviar()" class="formulario" novalidate>
+  <h2>Crear cuenta</h2>
+
+  @if (errores().length > 0) {
+    <div class="alerta alerta-error">
+      @for (e of errores(); track e) {
+        <p>❌ {{ e }}</p>
+      }
+    </div>
+  }
+
+  <div class="campo">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" formControlName="nombre">
+    @if (invalido('nombre')) {
+      <small class="error">
+        @if (form.get('nombre')?.errors?.['required']) {
+          El nombre es obligatorio.
+        } @else if (form.get('nombre')?.errors?.['minlength']) {
+          El nombre debe tener al menos 3 caracteres.
+        } @else {
+          El nombre no puede superar los 60 caracteres.
+        }
+      </small>
+    }
+  </div>
+
+  <div class="campo">
+    <label for="email">Correo</label>
+    <input id="email" type="email" formControlName="email" placeholder="correo@ejemplo.com">
+    @if (invalido('email')) {
+      <small class="error">
+        @if (form.get('email')?.errors?.['required']) {
+          El correo es obligatorio.
+        } @else {
+          El correo no tiene un formato válido.
+        }
+      </small>
+    }
+  </div>
+
+  <div class="campo">
+    <label for="password">Contraseña (mínimo 6 caracteres)</label>
+    <input id="password" type="password" formControlName="password">
+    @if (invalido('password')) {
+      <small class="error">
+        @if (form.get('password')?.errors?.['required']) {
+          La contraseña es obligatoria.
+        } @else {
+          La contraseña debe tener al menos 6 caracteres.
+        }
+      </small>
+    }
+  </div>
+
+  <div class="campo">
+    <label for="confirmar">Confirmar contraseña</label>
+    <input id="confirmar" type="password" formControlName="confirmar">
+    @if (invalido('confirmar')) {
+      <small class="error">Confirma tu contraseña.</small>
+    } @else if (noCoinciden) {
+      <small class="error">Las contraseñas no coinciden.</small>
+    }
+  </div>
+
+  <button type="submit" class="btn" [disabled]="enviando()">
+    {{ enviando() ? 'Registrando...' : 'Registrarme' }}
+  </button>
+
+  <p class="enlace">¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+</form>

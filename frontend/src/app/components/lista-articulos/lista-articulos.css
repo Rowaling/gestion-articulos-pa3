@@ -1,0 +1,67 @@
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  color: #0a4a40;
+  margin: 0;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e3ece8;
+}
+
+th {
+  background: #e7f0ec;
+  color: #0a4a40;
+}
+
+.acciones {
+  white-space: nowrap;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.btn-principal { background: #0f6b5c; }
+.btn-editar { background: #2f6fb3; margin-right: 6px; }
+.btn-eliminar { background: #c0392b; }
+
+.btn:hover { opacity: 0.88; }
+
+.alerta {
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+
+.alerta-ok { background: #e3f5ec; color: #0a4a40; }
+.alerta-error { background: #fbe4e1; color: #8e2a20; }
+.alerta-aviso { background: #fff4d6; color: #6b4b00; }

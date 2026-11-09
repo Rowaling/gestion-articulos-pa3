@@ -1,0 +1,34 @@
+<h2>Dashboard</h2>
+
+@if (error()) {
+  <p class="alerta">❌ {{ error() }}</p>
+}
+
+<div class="tarjetas">
+  <div class="tarjeta">
+    <span class="numero">{{ total() }}</span>
+    <span class="etiqueta">Artículos registrados</span>
+  </div>
+  <div class="tarjeta">
+    <span class="numero">{{ categorias() }}</span>
+    <span class="etiqueta">Categorías</span>
+  </div>
+  <div class="tarjeta">
+    <span class="numero">S/ {{ precioPromedio() | number: '1.2-2' }}</span>
+    <span class="etiqueta">Precio promedio</span>
+  </div>
+</div>
+
+<h3>Últimos artículos registrados</h3>
+@if (recientes().length > 0) {
+  <ul class="recientes">
+    @for (a of recientes(); track a._id) {
+      <li><strong>{{ a.nombre }}</strong> · {{ a.categoria }} · S/ {{ a.precio | number: '1.2-2' }}</li>
+    }
+  </ul>
+}
+
+<div class="accesos">
+  <a routerLink="/articulos" class="btn btn-principal">Ver todos los artículos</a>
+  <a routerLink="/articulos/nuevo" class="btn btn-secundario">Registrar nuevo artículo</a>
+</div>

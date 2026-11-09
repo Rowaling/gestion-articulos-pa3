@@ -1,0 +1,83 @@
+<h2>{{ esEdicion ? 'Editar artículo' : 'Nuevo artículo' }}</h2>
+
+@if (mensaje()) {
+  <p class="alerta alerta-ok">✅ {{ mensaje() }}</p>
+}
+
+@if (errores().length > 0) {
+  <div class="alerta alerta-error">
+    @for (e of errores(); track e) {
+      <p>❌ {{ e }}</p>
+    }
+  </div>
+}
+
+@if (cargando()) {
+  <p>Cargando datos del artículo...</p>
+} @else {
+  <form [formGroup]="form" (ngSubmit)="guardar()" class="formulario">
+    <div class="campo">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" formControlName="nombre" placeholder="Ej: Laptop Lenovo">
+      @if (invalido('nombre')) {
+        <small class="error">
+          @if (form.get('nombre')?.errors?.['required']) {
+            El nombre es obligatorio.
+          } @else if (form.get('nombre')?.errors?.['minlength']) {
+            El nombre debe tener al menos 3 caracteres.
+          } @else if (form.get('nombre')?.errors?.['maxlength']) {
+            El nombre no puede superar los 100 caracteres.
+          }
+        </small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="categoria">Categoría</label>
+      <select id="categoria" formControlName="categoria">
+        <option value="">-- Selecciona una categoría --</option>
+        @for (c of categorias; track c) {
+          <option [value]="c">{{ c }}</option>
+        }
+      </select>
+      @if (invalido('categoria')) {
+        <small class="error">Selecciona una categoría.</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="precio">Precio (S/)</label>
+      <input id="precio" type="number" step="0.01" formControlName="precio" placeholder="0.00">
+      @if (invalido('precio')) {
+        <small class="error">
+          @if (form.get('precio')?.errors?.['required']) {
+            El precio es obligatorio.
+          } @else if (form.get('precio')?.errors?.['min']) {
+            El precio debe ser mayor a 0.
+          }
+        </small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" rows="4" formControlName="descripcion" placeholder="Describe el artículo"></textarea>
+      @if (invalido('descripcion')) {
+        <small class="error">
+          @if (form.get('descripcion')?.errors?.['required']) {
+            La descripción es obligatoria.
+          } @else if (form.get('descripcion')?.errors?.['maxlength']) {
+            La descripción no puede superar los 300 caracteres.
+          }
+        </small>
+      }
+    </div>
+
+    <div class="botones">
+      <button type="submit" class="btn btn-principal" [disabled]="guardando()">
+        {{ guardando() ? 'Guardando...' : (esEdicion ? 'Actualizar' : 'Guardar') }}
+      </button>
+      <a routerLink="/articulos" class="btn btn-cancelar">Cancelar</a>
+    </div>
+  </form>
+}
