@@ -5,4 +5,4 @@ const enLocal = typeof window !== 'undefined' && window.location.hostname === 'l
 
 export const API_URL = enLocal
   ? 'http://localhost:3000/api'
-  : 'https://TU-BACKEND.onrender.com/api';
+  : 'https://gestion-articulos-pa3-6420.onrender.com/api';
